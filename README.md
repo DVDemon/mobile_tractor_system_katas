@@ -11,8 +11,8 @@
 # Solution Structure
 
 - [Gloassary]()
-- [Problem background](1.ProblemBackground\README.md)
-- [Solution background]()
-- [Views and Perspectives]()
+- [Problem background](1.ProblemBackground/README.md)
+- [Solution background](2.SolutionBackground/README.md)
+- [Views and Perspectives](3.ViewsAndPerspectives/README.md)
 
 # Links
