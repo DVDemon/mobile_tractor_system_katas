@@ -18,6 +18,8 @@
 1. Transactional Customer
 1. Non Customer
 1. Farmacy Family
+1. Dietican
+1. Clinic
 
 ### Use Case Scenarios
 
@@ -26,6 +28,7 @@
 1. Interraction with community members
 1. Push engagement to community
 1. Buy farmacy food product
+1. Plan Diet
 1. Collect analytics for farmacy food
 
 [Back](README.md)
