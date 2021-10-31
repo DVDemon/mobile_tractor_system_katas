@@ -1,74 +1,47 @@
-# {short title of solved problem and solution}
+# Architecture Style
 
-* Status: {proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)} <!-- optional -->
-* Deciders: {list everyone involved in the decision} <!-- optional -->
-* Date: {YYYY-MM-DD when the decision was last updated} <!-- optional -->
+* Status: {accepted} <!-- optional -->
+* Deciders: {Дмитрий Дзюба} <!-- optional -->
+* Date: {2021-10-31} <!-- optional -->
 
-Technical Story: {description | ticket/issue URL} <!-- optional -->
 
 ## Context and Problem Statement
 
-{Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.}
+Need to select architecture style for application 
 
 ## Decision Drivers <!-- optional -->
 
-* {driver 1, e.g., a force, facing concern, …}
-* {driver 2, e.g., a force, facing concern, …}
-* … <!-- numbers of drivers can vary -->
+* Application shiuld be very scalable
+* Requirements can be decomposed to the set of services
+* Solution is "customer facing" so we expect a lot of modification in client part
 
 ## Considered Options
 
-* {option 1}
-* {option 2}
-* {option 3}
-* … <!-- numbers of options can vary -->
+1. Traditional monolit or microkernel application
+1. Layered application with transactional services (classical SOA application)
+1. Microservice application with micro frontends
+
 
 ## Decision Outcome
 
-Chosen option: "{option 1}", because {justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force {force} | … | comes out best (see below)}.
+Chosen option: "Microservice application with micro frontends", because it is only type of application that support fast changes in logic (i.e. add new types of communication between community memebers) and can handle scalability requirements.
+
+![microservices](../img/microservice.png "Microservices")
 
 ### Positive Consequences <!-- optional -->
 
-* {e.g., improvement of quality attribute satisfaction, follow-up decisions required, …}
-* …
+* Good modifiability
+* Good scalability
+* Good elasticability
+
 
 ### Negative Consequences <!-- optional -->
 
-* {e.g., compromising quality attribute, follow-up decisions required, …}
-* …
+* It's harder to create application and manage dependency
 
-## Pros and Cons of the Options <!-- optional -->
-
-### {option 1}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
-
-### {option 2}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
-
-### {option 3}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
 
 ## Links <!-- optional -->
 
-* {Link type} {Link to ADR} <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* … <!-- numbers of links can vary -->
+* [Microservices](https://martinfowler.com/articles/microservices.html)
 
 [Back](README.md)
