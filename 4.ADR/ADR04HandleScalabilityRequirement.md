@@ -1,74 +1,64 @@
-# {short title of solved problem and solution}
+# Handle Scalability Requirement
 
-* Status: {proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)} <!-- optional -->
-* Deciders: {list everyone involved in the decision} <!-- optional -->
-* Date: {YYYY-MM-DD when the decision was last updated} <!-- optional -->
+* Status: {accepted} <!-- optional -->
+* Deciders: {Дмитрий Дзюба} <!-- optional -->
+* Date: {2021-10-31} <!-- optional -->
 
-Technical Story: {description | ticket/issue URL} <!-- optional -->
 
 ## Context and Problem Statement
 
-{Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.}
+We need to be able scale up system in case amound of engaged customers increase.
 
 ## Decision Drivers <!-- optional -->
 
-* {driver 1, e.g., a force, facing concern, …}
-* {driver 2, e.g., a force, facing concern, …}
-* … <!-- numbers of drivers can vary -->
+* Customer can be connected localy by zone
+* If we have celebrity as customer, we can catch Lady Gaga effect [LadyGagaInstagram](https://www.themoscowtimes.com/2019/07/18/russian-instagram-users-swarm-lady-gagas-page-over-bradley-cooper-a66469)
 
 ## Considered Options
 
-* {option 1}
-* {option 2}
-* {option 3}
-* … <!-- numbers of options can vary -->
+* CQRS pattern for community domain
+* Geographical Sharding according location zone
+* Caching fmost sensitive data
+* Event sourcing for asynchronius communication and better scalability
 
 ## Decision Outcome
 
-Chosen option: "{option 1}", because {justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force {force} | … | comes out best (see below)}.
+We must consider all these options together. Social networks is very sensitive for performance.
 
-### Positive Consequences <!-- optional -->
+![Diagram](../img/diagrams-ScalabilityLevels.png "Diagram")
 
-* {e.g., improvement of quality attribute satisfaction, follow-up decisions required, …}
-* …
+### Data Indexing
 
-### Negative Consequences <!-- optional -->
+The most amount of information we expect in forum messages, comments and direct messages. So we need to index these tables to speedup acess to data. The most perfect way is to create multi-column index because we need to fast search comments/messages by sender (to show him his personal messages); 
 
-* {e.g., compromising quality attribute, follow-up decisions required, …}
-* …
+![Diagram](../img/diagrams-Indexing.png "Diagram")
 
-## Pros and Cons of the Options <!-- optional -->
+### Sharding
 
-### {option 1}
+We need to speedup data access by creating geographical shards (for location based community). But, becase some one can have access to communities in different locations we need to use Scatter-and-Gatherer pattern.
 
-{example | description | pointer to more information | …} <!-- optional -->
+![Diagram](../img/diagrams-Sharding.png "Diagram")
 
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
+### Caching
 
-### {option 2}
+We need to cache  recently requeste data to speedup access. For example using read through pattern. As a cache grid we can use Apache Ignite.
 
-{example | description | pointer to more information | …} <!-- optional -->
+### Replication
 
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
+Another solution for speedup access is to use separate database instance for writing and reading of information. We can use one instance of PostgreSQL database to write, and multiple instances of read-only replicas (async repilcation). In social network the amount of reading request is greater then writing requests.
 
-### {option 3}
+### Async writing
 
-{example | description | pointer to more information | …} <!-- optional -->
+Also we need to use Comand Query Separation pattern for speed up changing in data. We can write data in Apache Kafka and then write it to database.
 
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
+![Diagram](../img/diagrams-CQRS.png "Diagram")
+
+
 
 ## Links <!-- optional -->
 
-* {Link type} {Link to ADR} <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* … <!-- numbers of links can vary -->
+* [BackendForFrontend](https://samnewman.io/patterns/architectural/bff/)
+* [ScatterAndGatherer](https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html)
+* [CARS](https://martinfowler.com/bliki/CQRS.html)
 
 [Back](README.md)

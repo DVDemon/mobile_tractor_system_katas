@@ -1,74 +1,40 @@
-# {short title of solved problem and solution}
+# System Decomposition
 
-* Status: {proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)} <!-- optional -->
-* Deciders: {list everyone involved in the decision} <!-- optional -->
-* Date: {YYYY-MM-DD when the decision was last updated} <!-- optional -->
+* Status: {accepted} <!-- optional -->
+* Deciders: {Дмитрий Дзюба} <!-- optional -->
+* Date: {2021-10-31} <!-- optional -->
 
-Technical Story: {description | ticket/issue URL} <!-- optional -->
 
 ## Context and Problem Statement
 
-{Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.}
+We need to separate application domain into the loosly coupled part. 
 
 ## Decision Drivers <!-- optional -->
 
-* {driver 1, e.g., a force, facing concern, …}
-* {driver 2, e.g., a force, facing concern, …}
-* … <!-- numbers of drivers can vary -->
+To many domains will increase complexity in system creation and maintaince. To few domains incrise complexity in system modification.
 
 ## Considered Options
 
-* {option 1}
-* {option 2}
-* {option 3}
-* … <!-- numbers of options can vary -->
+* One domain to rule them all
+* Engagement, cutomer and analytics domain
+* Engagement, Customer, Community, Medical, Learning, Media domain
 
 ## Decision Outcome
 
-Chosen option: "{option 1}", because {justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force {force} | … | comes out best (see below)}.
+Chosen option: "Engagement, cutomer and analytics domain", because of good balance between system complexity and coupling.
+
+![Systemdecomposition](../img/diagrams-SystemDecomposition.png "Decomposition")
 
 ### Positive Consequences <!-- optional -->
 
-* {e.g., improvement of quality attribute satisfaction, follow-up decisions required, …}
-* …
+We can address requirments to the three domain%
+* Engagement - all requirements for customer engagement and various loyality programs
+* Customer - all requirements for customer community activity (forum, interactions, learning)
+* Analytics and integration - all requirements for 3rd party integration
 
 ### Negative Consequences <!-- optional -->
 
-* {e.g., compromising quality attribute, follow-up decisions required, …}
-* …
+We join integration and analytics domain and that may be add complexity to the various integration.
 
-## Pros and Cons of the Options <!-- optional -->
-
-### {option 1}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
-
-### {option 2}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
-
-### {option 3}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
-
-## Links <!-- optional -->
-
-* {Link type} {Link to ADR} <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* … <!-- numbers of links can vary -->
 
 [Back](README.md)
