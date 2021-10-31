@@ -28,7 +28,7 @@ Chosen option: "Create Adpater layer for integration", because it is most flexib
 It is better to use GraphQL for internal api layer. Becaue of flexibility in data selection.
 For batch processinc of analitics it is better to use (Change Data Capture) solution like Debezium.
 
-![Integration](..\img\diagrams-Integration.png "Integration")
+![Integration](../img/diagrams-Integration.png "Integration")
 
 ### Positive Consequences <!-- optional -->
 
