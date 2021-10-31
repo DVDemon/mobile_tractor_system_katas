@@ -59,6 +59,6 @@ Also we need to use Comand Query Separation pattern for speed up changing in dat
 
 * [BackendForFrontend](https://samnewman.io/patterns/architectural/bff/)
 * [ScatterAndGatherer](https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html)
-* [CARS](https://martinfowler.com/bliki/CQRS.html)
+* [CQRS](https://martinfowler.com/bliki/CQRS.html)
 
 [Back](README.md)
