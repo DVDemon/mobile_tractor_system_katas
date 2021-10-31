@@ -1,3 +1,0 @@
-### Glossary
-
-[Back](../README.MD)
