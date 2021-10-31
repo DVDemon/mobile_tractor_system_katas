@@ -1,74 +1,46 @@
-# {short title of solved problem and solution}
+# Interaction with external systems
 
-* Status: {proposed | rejected | accepted | deprecated | … | superseded by [ADR-0005](0005-example.md)} <!-- optional -->
-* Deciders: {list everyone involved in the decision} <!-- optional -->
-* Date: {YYYY-MM-DD when the decision was last updated} <!-- optional -->
-
-Technical Story: {description | ticket/issue URL} <!-- optional -->
+* Status: {accepted} <!-- optional -->
+* Deciders: {Дмитрий Дзюба} <!-- optional -->
+* Date: {2021-10-31} <!-- optional -->
 
 ## Context and Problem Statement
 
-{Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.}
+We need to integrate with various external systems:
+* Medical systems
+* Dietican systems
+* Farmacy Food (for excange customer and analytics information)
 
 ## Decision Drivers <!-- optional -->
 
-* {driver 1, e.g., a force, facing concern, …}
-* {driver 2, e.g., a force, facing concern, …}
-* … <!-- numbers of drivers can vary -->
+* We need to be able to add new integration fast
 
 ## Considered Options
 
-* {option 1}
-* {option 2}
-* {option 3}
-* … <!-- numbers of options can vary -->
+* Create OpenAPI to allow all 4rd party integrate with Farmacy Family
+* Create Adpater layer for integration
+* Integrate with 3rd party in ad hoc
 
 ## Decision Outcome
 
-Chosen option: "{option 1}", because {justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force {force} | … | comes out best (see below)}.
+Chosen option: "Create Adpater layer for integration", because it is most flexible way. Also we need to create internal API for integration between adapters and core system. It allow as to create new adapter faster. We need to support set of standart adapter (for example useing H7 medical excange standard)
+
+It is better to use GraphQL for internal api layer. Becaue of flexibility in data selection.
+For batch processinc of analitics it is better to use (Change Data Capture) solution like Debezium.
+
+![Integration](..\img\diagrams-Integration.png "Integration")
 
 ### Positive Consequences <!-- optional -->
 
-* {e.g., improvement of quality attribute satisfaction, follow-up decisions required, …}
-* …
+* Isolation of adapters, fast adapter creation and modification
 
 ### Negative Consequences <!-- optional -->
 
-* {e.g., compromising quality attribute, follow-up decisions required, …}
-* …
+* Additional "internal" integration layer will slow down communication (a bit)
 
-## Pros and Cons of the Options <!-- optional -->
-
-### {option 1}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
-
-### {option 2}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
-
-### {option 3}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
 
 ## Links <!-- optional -->
 
-* {Link type} {Link to ADR} <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* … <!-- numbers of links can vary -->
+* [H7 Standard](http://www.hl7.org/implement/standards/index.cfm)
 
 [Back](README.md)
